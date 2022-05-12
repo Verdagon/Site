@@ -41,8 +41,12 @@ func add2(x int) int { x + 2 }
 ```: `exported func main() {}`
 >>>>
 
+
+
+# Closures
+
 <<<<
-We can also make a *lambda*, a function inside another one. [# See the Tuples section below for an example of how lambdas are super useful.]
+We can also make a *closure*, a function inside another one.
 ////
 ```vale
 exported func main() {
@@ -63,19 +67,11 @@ exported func main() {
 ```: `import stdlib.*;`
 >>>>
 
-<<<<
-We can shorten lambdas with the *almighty underscore*, which declares and immediately uses an implicit parameter.
-////
-```vale
-exported func main() {
-  add2 = { _ + 2 };
-  println("Half-Life " + add2(1));
-}
-```: `import stdlib.*;`
->>>>
+
+# Functions = Methods
 
 <<<<
-In Vale, functions and methods are the same thing, [#ufcs] so these two calls are exactly equivalent. [# Include vstl/list.vale for the `split` function.]
+In Vale, functions and methods are the same thing, so these two calls are exactly equivalent.
 ////
 ```vale
 exported func main() {
@@ -85,13 +81,14 @@ exported func main() {
 ```: `import stdlib.*; import stdlib.stringutils.*; import stdlib.collections.*;`
 >>>>
 
-<slice>
-#ufcs: This is known as Universal Function Call Syntax. This makes method chaining nicer, for example
+
+This is known as *Universal Function Call Syntax*, or UFCS. This makes method chaining nicer, for example:
 
 `a.f(3).g(true).h("Yendor")`
 
 as opposed to
 
 `h(g(f(a, 3), true), "Yendor")`.
-</slice>
+
+<slice/>
 

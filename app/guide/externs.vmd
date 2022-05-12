@@ -293,7 +293,7 @@ ValeInt vtest_sumBytes(vtest_ImmIntArray* arr) {
 <slice />
 
 
-# Fearless FFI
+# Separated FFI
 
 Vale is the most memory-safe native language: bugs in C cannot affect Vale objects. [# One cannot accidentally corrupt Vale objects. This however does not prevent someone from _intentionally_ working around the protections here. Don't run untrusted C code in your programs.] This is because:
 

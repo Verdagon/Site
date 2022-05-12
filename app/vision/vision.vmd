@@ -165,7 +165,7 @@ This is planned! Check out [Memory Safety, Part 3: Region Borrow Checker](/visio
 
 
 
-## Externs and Fearless FFI
+## Externs and Separated FFI
 
 Vale can send data to other languages in two ways:
 
@@ -179,7 +179,7 @@ A handle is an opaque fat pointer [# An opaque pointer is one that the user cann
 By doing this instead of giving raw access to Vale objects, Vale can guarantees that any accidental mistakes in C will not cause Vale code to trigger memory unsafety.
 
 
-This works today! You can read more about it at [Memory Safety, Part 5: Externs and Fearless FFI](/vision/safety-externs-fearless-ffi).
+This works today! You can read more about it at [Memory Safety, Part 5: Externs and Separated FFI](/vision/safety-externs-separated-ffi).
 
 
 # Fast Code in Vale

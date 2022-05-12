@@ -5,21 +5,23 @@ layout: onecolumn
 ---
 
 
-The Vale compiler is *version 0.1.4*.
+The Vale compiler is *version 0.2*.
 
 This compiler is still experimental, and not production-ready yet. Keep an eye out for 1.0, when it will be suitable for production. Use at your own risk, and report any bugs to the github!
 
 
 # Releases
 
-## 0.2 "Kuma" Release (Beta)
+## 0.2 "Kuma" Release
 
-You can download binaries from the [releases page](https://github.com/ValeLang/Vale/releases/tag/v0.2.0.0).
+You can download binaries from the [releases page](https://github.com/ValeLang/Vale/releases/tag/v0.2.0).
 
 
 This release:
 
- * Enables Higher RAII, one of Vale's main innovations.
+ * Enables [Higher RAII](https://verdagon.dev/blog/higher-raii-7drl), one of Vale's main innovations.
+ * Adds [const generics](https://verdagon.dev/blog/const-generics-spread).
+ * Adds [concept functions](verdagon.dev/blog/concept-functions).
  * Simplifies the language's syntax:
     * We no longer need `impl MyInterface` in override function signatures!
     * There is no longer a readwrite-vs-readonly reference distinction.
@@ -28,16 +30,6 @@ This release:
     * Added postfix borrow!
  * Compiles a bit faster!
  * Uses LLVM13 under the hood now.
-
-
-The .zip includes:
-
- * *valec.exe*, the main compiler program. Use `valec help` for help.
- * *stdlib* contains the standard library.
- * *samples*, a collection of small programs written in Vale.
-    * *roguelike.vale* is a program where you are an @ sign and can walk in four directions.
-    * The rest are tiny programs that serve as test cases for the compiler.
- * `builtins` should be ignored, these are .c files used by the compiler itself.
 
 
 ## 0.1.4 "Ember" Release

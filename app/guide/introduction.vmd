@@ -18,7 +18,7 @@ series-entry: [Externs and Exports](/guide/externs)
 series-entry: [Unsafe](/guide/unsafe)
 ---
 
-Welcome to Vale! Vale is a fast, safe, and simple programming language. This introduction will show how to write a program in Vale.
+Welcome to Vale, the fast, safe, and simple programming language. This introduction will show how to write a basic program in Vale.
 
 This reference assumes that you are familiar with basic programming concepts, and at least one other imperative language (like C, Java, Python, etc).
 
@@ -27,17 +27,16 @@ Vale is still in alpha, which means it's a preview; you can write programs in it
 
 # Hello world!
 
-<<<<
 First, download the latest Vale compiler from the [downloads page](/download), and unzip it to a directory, such as `~/Vale`.
 
 Then:
 
- * Put this code into a .vale file such as `~/myprogram.vale`
+ * Put the below code into a .vale file such as `~/myprogram.vale`
  * Run the command `~/Vale/valec build mymodule=~/myprogram.vale --output_dir=build`.
     * See that it created a `build` directory, with a `main` executable in it. [# If on windows, the executable will be named `main.exe`.]
  * Run the command `build/main` to run the executable.
 
-////
+
 ```vale
 exported func main() {
   println("Hello world!");
@@ -45,7 +44,13 @@ exported func main() {
 ```stdout
 Hello world!
 ```: `import stdlib.*;`
->>>>
+
+
+
+Every Vale program must have an `exported` main function like the above. [# `exported` means it can be called by the OS or other languages such as C. See [Externs and Exports](/guide/externs) for more.]
+
+
+Every source file must belong to a module. That's what the `mymodule=` is for. For now, you can put `mymodule=` in front of all of your .vale files (or directories containing .vale), and in [Modules](/guide/modules) we'll explain more about what modules are.
 
 
 Instead of:
@@ -57,12 +62,6 @@ You can say:
 `valec build mymodule=~/myprogram.vale --output_dir=build`
 
 if you put ~/Vale in your PATH. [#path] We recommend it!
-
-
-Every Vale program must have an `exported` main function like the above. [# `exported` means it can be called by the OS or other languages such as C. See [Externs and Exports](/guide/externs) for more.]
-
-
-Every source file must belong to a module. That's what the `mymodule=` is for. For now, you can put `mymodule=` in front of all of your .vale files (or directories containing .vale), and in [Modules](/guide/modules) we'll explain more about what modules are.
 
 
 # Variables
@@ -130,54 +129,4 @@ Hello world!
 >>>>
 
 <slice/>
-
-
-
-<slice new-color="afterword" />
-
-
-# Planned Features
-
-These are planned features for Vale. See the [roadmap](/roadmap) for plans!
-
-
-## Variants
-
-<<<<
-We'll be able to produce a *variant*, which is something that can be one of two types (or more).
-
-To make a variant, use an if-statement, and return a different type from the then branch than the else branch.
-
-Here, `a` is a variant, either a string or an integer. `a`'s type is `(str|int)`.
-////
-```
-exported func main() {
-  a =
-    if true { "hello" }
-    else { 42 };
-}
-```
->>>>
-
-Later, we can use the `match` statement to determine if `a` actually contains a `str` or an `int`.
-
-
-## Indexing Structs or Tuples for Variants
-
-<<<<
-We'll be able to access a arbitrary fields of tuples or structs with square brackets, like `tup[1 + 1]`, which would produce a *variant*. [#variantindexing]
-////
-```
-exported func main() {
-  tup = (5, true, "V");
-  println("Saturn " + tup[1 + 1]);
-}
-```stdout
-Saturn V
-```
->>>>
-
-<slice new-color="default">
-#variantindexing: Specifically, indexing this tuple gives a variant `(int|bool|str)`, with a `+` function that calls the appropriate actual `+` depending on the run-time type (`int` vs `bool` vs `str`).
-</slice>
 

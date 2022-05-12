@@ -15,11 +15,26 @@ path: home
 Vale's goal is to show the world that *speed and safety can be easy!* Vale is:
 
  * *Fast:* Vale is an AOT compiled, statically-typed language that uses the new [generational references](https://verdagon.dev/blog/generational-references) technique for memory-safe control over data layout.
- * *Safe:* It is the [safest native language](/fearless), using region isolation and "Fearless FFI" to keep extern code's bugs from affecting Vale objects.
+ * *Safe:* It is the [safest native language](/fearless), using region isolation and "Separated FFI" to help keep extern code's bugs from affecting Vale objects.
  * *Easy:* Its new take on [regions](/guide/regions) will enable alternate memory management and allocation strategies, with the planned [region borrow checker](https://verdagon.dev/blog/zero-cost-refs-regions) enabling easy interop between them, and eliminating the vast majority of generational references' overhead.
 
 
 Read comparisons with [C++, Javascript, and Rust](/comparisons)!
+
+
+*Upcoming Features:*
+
+We have some ambitious goals, to bring several new ideas into the programming world:
+
+ * A [region borrow checker](https://verdagon.dev/blog/zero-cost-refs-regions) to eliminate memory-safety overhead.
+ * [Seamless Concurrency](https://verdagon.dev/blog/seamless-fearless-structured-concurrency) for parallelism without added complexity!
+ * [Perfect Replayability](https://verdagon.dev/blog/next-perfect-replayability) to completely eliminate heisenbugs, even in the presence of multithreading!
+ * [Separated FFI](https://verdagon.dev/blog/next-separated-ffi) to keep external code from corrupting Vale memory, and mitigate supply chain attacks.
+ * [Higher RAII](https://verdagon.dev/blog/higher-raii-7drl), which helps us remember to call any function at some point in the future.
+ * [Hybrid-Generational Memory](https://verdagon.dev/blog/hybrid-generational-memory), which could reduce the overhead of generational references.
+
+
+See the [Roadmap](/roadmap) for more!
 
 
 *Featuring*:
@@ -34,22 +49,6 @@ Read comparisons with [C++, Javascript, and Rust](/comparisons)!
  * [Regions](/guide/regions) for different allocation strategies. (planned!)
  * [Interface Constructors](/guide/interfaces#sealedconstructors) (planned!)
 
-
-*Upcoming Features:*
-
-We have some ambitious goals, to bring several new ideas into the programming world:
-
- * A [region borrow checker](https://verdagon.dev/blog/zero-cost-refs-regions) to eliminate memory-safety overhead.
- * [Seamless Concurrency](https://verdagon.dev/blog/seamless-fearless-structured-concurrency) for parallelism without added complexity!
- * [Perfect Replayability](https://verdagon.dev/blog/next-perfect-replayability) to completely eliminate heisenbugs, even in the presence of multithreading!
- * [Fearless FFI](https://verdagon.dev/blog/next-fearless-ffi) to keep external code from corrupting Vale memory, and mitigate supply chain attacks.
- * [Higher RAII](https://verdagon.dev/blog/higher-raii-7drl), which helps us remember to call any function at some point in the future.
-
-
-Vale is at version 0.1.4, see the [Roadmap](/roadmap) for what's next!
-
-
-Vale is [open for contributions](/contribute), thank you to our team of [contributors](/contributors)!
 
 
 ////
@@ -95,12 +94,13 @@ Vale is part of the [Vale Language Project](/project), which explores, discovers
 
 *Recent posts:*
 
+ * [Added to Vale 0.2 Beta: Concept Functions](https://verdagon.dev/blog/concept-functions)
+ * [Const Generics and the Compile Time Spread Operator](https://verdagon.dev/blog/const-generics-spread)
  * [On Removing Let and Let Mut](https://verdagon.dev/blog/on-removing-let-let-mut)
  * [A Tale of Yak Shaving: Accidentally Making a Language, for an Engine, for a Game
 ](https://verdagon.dev/blog/yak-shave-language-engine-game)
  * [Surprising Weak-Ref Implementations: Swift, Obj-C, C++, Rust, and Vale](https://verdagon.dev/blog/surprising-weak-refs)
  * [Vale's Higher RAII, the pattern that saved me a vital 5 hours in the 7DRL Challenge](https://verdagon.dev/blog/higher-raii-7drl)
- * [Data Races in Python, Despite the Global Interpreter Lock](https://verdagon.dev/blog/python-data-races)
  * [Seamless, Fearless, Structured Concurrency](https://verdagon.dev/blog/seamless-fearless-structured-concurrency)
  * [Generational References](https://verdagon.dev/blog/generational-references)
  * [Hybrid-Generational Memory](https://verdagon.dev/blog/hybrid-generational-memory)
@@ -109,6 +109,33 @@ Vale is part of the [Vale Language Project](/project), which explores, discovers
  * [Announcing Vale!](https://www.reddit.com/r/ProgrammingLanguages/comments/hplj2i/vale/)
 
 Follow along via our [RSS feed](/rss.xml) or the [r/Vale](https://reddit.com/r/vale) subreddit!
+
+
+
+
+>>>>
+
+
+<<<<
+
+*What's been happening recently:*
+
+ * *Apr 26, 2022:* Stack switching for Separated FFI [successfully prototyped](https://github.com/Verdagon/Vale/commit/f6ff79d29426839424438be7e305026c6eb37299)! Usable with `--enable_side_calling true`.
+ * *Apr 4, 2022:* [Sped up compile times by 4.2%](https://github.com/Verdagon/Vale/commit/5f04754b67a2f9e5544f9a17aad725dc17207636).
+ * *Mar 21, 2022:* Version 0.2 beta released!
+ * *Mar 3, 2022:* Higher RAII added to the standard library, [and used in 7DRL](https://verdagon.dev/blog/higher-raii-7drl)!
+ * *Feb 11, 2022:* [Concept functions](https://verdagon.dev/blog/concept-functions) added.
+ * *Feb 11, 2022:* [0.1.4 released](https://github.com/Verdagon/Vale/commit/32df8bf13ba8b002c3098e12aa789e1c75112c79), improving syntax.
+ * *Jan 20, 2022:* [Sped up compiler up by 10-11x](https://github.com/Verdagon/Vale/commit/32df8bf13ba8b002c3098e12aa789e1c75112c79), by caching hash calculations.
+ * *Dec 9, 2021:* [Revamped arrays](https://github.com/Verdagon/Vale/commit/bf86d7a35a73a6182b851a35e0a8e155470c506b) to enable partially filled arrays.
+ * *Nov 26, 2021:* [Major compiler refactoring](https://github.com/Verdagon/Vale/commit/70173bfbe77ce2e14da1f098251d1d2c67f5b98f), including [variadic members](https://verdagon.dev/blog/const-generics-spread).
+
+
+////
+
+
+Vale is [open for contributions](/contribute), thank you to our team of [contributors](/contributors)!
+
 
 
 <center>
@@ -124,13 +151,14 @@ Follow along via our [RSS feed](/rss.xml) or the [r/Vale](https://reddit.com/r/v
 *Thank you to our sponsors!*
 
  * [Joseph Jaoudi](https://github.com/linkmonitor) ($25/mo)
+ * [Sergey "Shnatsel" Davidoff](https://github.com/Shnatsel) ($12/mo)
  * [Ivo Balbaert](https://github.com/Ivo-Balbaert/) ($5/mo)
  * [Kevin Navero](https://github.com/solstice333/) ($5/mo)
  * Ilya Seletsky ($5/mo)
  * Jean Juang ($100)
+ * [Posnet](https://github.com/Posnet) ($50)
  * Kim Shook ($20)
-
+ * [Steve Phillips](https://github.com/elimisteve) ($20)
 
 
 >>>>
-

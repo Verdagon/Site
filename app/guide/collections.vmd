@@ -282,7 +282,7 @@ exported func main() {
 >>>>
 
 
-<slice new-color="afterword">
+<slice>
 #inputInt: `stdinReadInt` reads an integer from the user's keyboard. In this example, the user is entering 3.
 
 stdinReadInt is temporary and experimental, expect the stdin/stdout API to change soon.

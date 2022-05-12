@@ -121,6 +121,8 @@ exported func main() {
 Serenity
 ```
 
+
+
 Note that `as<FireflyShip>()` returns a `Result<FireflyShip, Ship>`, which will be either an `Ok` containing a `FireflyShip`, or an `Err` containing a `Ship`. In the above code, we're calling `.expect()` because we assume it is indeed a `FireflyShip`.
 
 

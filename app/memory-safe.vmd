@@ -1,10 +1,9 @@
 ---
 title: The Most Memory Safe Native Programming Language
-author: Evan Ovadia
-realm: blog
-path: blog/memory-safe
+realm: normal
+path: memory-safe
 layout: annotated
-namespace: c-blog m-annotated
+namespace: m-annotated
 ---
 
 
@@ -74,26 +73,29 @@ This protects us from any bugs in C that might otherwise accidentally corrupt ou
 
 Generational references are very fast, but if we want that extra sliver of performance, Vale plans to add the [Check Override Operator](https://vale.dev/guide/unsafe#check-override).
 
+
 ! Note that the check override operator, region borrow checker, and hybrid-generational memory are all upcoming features, not available yet. We mention them here to show our plans for balancing safety with speed!
 
 
-Most generation checks will be skipped by the [region borrow checker](https://verdagon.dev/blog/zero-cost-refs-regions) and [Hybrid-Generational Memory](https://verdagon.dev/blog/hybrid-generational-memory)]. For example, we recently implemented a [Cellular Automata algorithm](https://verdagon.dev/blog/yak-shave-language-engine-game#the-good-parts), and by our measurements, regions and hybrid-generational memory would eliminate every single generation check in the entire algorithm.
+Most generation checks will be skipped by the [region borrow checker](https://verdagon.dev/blog/zero-cost-refs-regions) and [Hybrid-Generational Memory](https://verdagon.dev/blog/hybrid-generational-memory). For example, we recently implemented a [Cellular Automata algorithm](https://verdagon.dev/blog/yak-shave-language-engine-game#the-good-parts), and by our measurements, regions and hybrid-generational memory would eliminate every single generation check in the entire algorithm.
 
 
 Still, for the occasional generation check that those two might not eliminate, we have the Check Override Operator, which will skip the generation check for a generational reference.
 
 
-"But what if a dependendy uses a check override operator, and causes memory unsafety? Isn't this just as bad as an unsafe block?"
+> "But what if a dependency uses a check override operator, and causes memory unsafety? Isn't this just as bad as an unsafe block?"
 
-It would seem so, except for one key detail: the check override operator is ignored by default for any dependencies! Most people will be using it with checks on, so everyone will find out very quickly if there's any unsafe behavior in practice. Anyone who wants that extra sliver of performance can then opt-in to skipping the checks, with a little more confidence that unsafety will be detected by other users of the library.
+It would seem so, except for one key detail: the check override operator is *ignored by default for any dependencies.* One must explicitly enable a dependency to ignore its checks.
 
-And if a user doesn't want that risk, they simply stick with the defaults, which ignore the check override operator.
+Most people will be using it with checks on, so everyone will find out very quickly if there's any unsafe behavior in practice. Anyone who wants that extra sliver of performance can then opt-in to skipping the checks in release mode, with a little more confidence that unsafety will be detected by other users of the library, or in development or testing.
+
+And if a user isn't comfortable with that for their situation, they simply stick with the defaults, which ignore the check override operator.
 
 
-We think this is the perfect tradeoff to allow memory safety when it's critical, while not compromising the safety of the language or ecosystem.
+We think this is a perfect tradeoff to allow memory safety when it's critical, while not compromising the safety of the language or ecosystem.
 
 
-We're also thinking of adding a way to skip all generation checks for a given block of code. [# We might even call it an `unsafe` block, but that might cause confusion.]
+We're also thinking of adding a way to skip all generation checks for a given block of code. [# We might even call it an `unsafe` block, if that doesn't cause confusion with other languages.]
 
 
 # Tying it All Together

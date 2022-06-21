@@ -8,6 +8,11 @@
     ],
     "redirects": [
       {
+        "regex": "/blog/(.+)",
+        "destination": "https://verdagon.dev/blog/:1",
+        "type": 302
+      },
+      {
         "regex": "/issues/(.+)",
         "destination": "https://github.com/ValeLang/Vale/issues?q=is%3Aissue+is%3Aopen+label%3A:1",
         "type": 302
@@ -18,28 +23,13 @@
         "type": 302
       },
       {
+        "source": "/fearless",
+        "destination": "/memory-safe",
+        "type": 302
+      },
+      {
         "source": "/vision",
         "destination": "/vision/vision",
-        "type": 302
-      },
-      {
-        "source": "/blog/raii-next-steps",
-        "destination": "https://verdagon.dev/blog/raii-next-steps",
-        "type": 302
-      },
-      {
-        "source": "/blog/zero-cost-refs-regions",
-        "destination": "https://verdagon.dev/blog/zero-cost-refs-regions",
-        "type": 302
-      },
-      {
-        "source": "/blog/hybrid-generational-memory",
-        "destination": "https://verdagon.dev/blog/hybrid-generational-memory",
-        "type": 302
-      },
-      {
-        "source": "/blog/generational-references",
-        "destination": "https://verdagon.dev/blog/generational-references",
         "type": 302
       },
       {

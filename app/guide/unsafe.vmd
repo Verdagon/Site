@@ -89,4 +89,4 @@ func main() {
 ```
 >>>>
 
-Similar to [Separated FFI](/guide/externs#separated-ffi), whenever the unsafe region has a reference to a safe region's object, it will be scrambled. When we try to use it again, it will be unscrambled and checked. This way, bugs inside the unsafe region don't corrupt memory in the safe region.
+Similar to [Fearless FFI](/guide/externs#fearless-ffi), whenever the unsafe region has a reference to a safe region's object, it will be scrambled. When we try to use it again, it will be unscrambled and checked. This way, bugs inside the unsafe region don't corrupt memory in the safe region.

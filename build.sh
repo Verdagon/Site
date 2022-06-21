@@ -93,10 +93,10 @@ if [ $TARGET == "comparisons" ] || [ $TARGET == "all" ] ; then
   fi
 fi
 
-if [ $TARGET == "fearless" ] || [ $TARGET == "all" ] ; then
-  echo "Doing fearless"
-  echo $VMD_SITE_GEN/build/vmdsitegen $MODE --compiler_dir $VALESTROM --out public/fearless app/fearless.vmd
-  eval $VMD_SITE_GEN/build/vmdsitegen $MODE --compiler_dir $VALESTROM --out public/fearless app/fearless.vmd
+if [ $TARGET == "memory-safe" ] || [ $TARGET == "all" ] ; then
+  echo "Doing memory-safe"
+  echo $VMD_SITE_GEN/build/vmdsitegen $MODE --compiler_dir $VALESTROM --out public/memory-safe app/memory-safe.vmd
+  eval $VMD_SITE_GEN/build/vmdsitegen $MODE --compiler_dir $VALESTROM --out public/memory-safe app/memory-safe.vmd
   if [ $? != 0 ]; then
     echo "Failed!"
     exit 1

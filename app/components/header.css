@@ -70,6 +70,7 @@ a.header:hover {
 .header .reddit,
 .header .github,
 .header .rss,
+.header .twitter,
 .header .discord {
 	background-size: 100% 100%;
 	background-image: url('../images/reddit_share_circle_64.png');
@@ -81,6 +82,9 @@ a.header:hover {
 }
 .header .discord {
 	background-image: url('../images/Discord-Logo-Color.png');
+}
+.header .twitter {
+	background-image: url('../images/twitter.png');
 }
 .header .reddit {
 	background-image: url('../images/reddit_share_circle_64.png');

@@ -12,11 +12,11 @@ path: home
 
 <<<<
 
-Vale's goal is to show the world that *speed and safety can be easy!* Vale is:
+Vale is:
 
- * *Fast:* Vale is an AOT compiled, statically-typed language that uses the new [generational references](/blog/generational-references) technique for memory-safe control over data layout.
- * *Safe:* It is the [safest native language](/fearless), using region isolation and "Fearless FFI" to help keep extern code's bugs from affecting Vale objects.
- * *Easy:* Its new take on [regions](/guide/regions) will enable alternate memory management and allocation strategies, with the planned [region borrow checker](/blog/zero-cost-refs-regions) enabling easy interop between them, and eliminating the vast majority of generational references' overhead.
+ * *Fast:* Vale is an AOT compiled, statically-typed language that uses the new [generational references](/blog/generational-references) technique for memory safety with speed and flexibility, and will soon have [region borrow checking](/blog/zero-cost-refs-regions) to make it even faster.
+ * *Safe:* It is the [safest native language](/memory-safe), thanks to [generational references](/blog/generational-references) and [Fearless FFI](https://verdagon.dev/blog/fearless-ffi).
+ * *Easy:* Vale is focused on flexibility and developer velocity, so we don't have to spend all of our time refactoring or debugging.
 
 
 Read comparisons with [C++, Javascript, and Rust](/comparisons)!
@@ -24,12 +24,12 @@ Read comparisons with [C++, Javascript, and Rust](/comparisons)!
 
 *Upcoming Features:*
 
-We have some ambitious goals, to bring several new ideas into the programming world:
+We'll soon bring even more new features and designs into the programming world:
 
  * A [region borrow checker](/blog/zero-cost-refs-regions) to eliminate memory-safety overhead.
  * [Seamless Concurrency](/blog/seamless-fearless-structured-concurrency) for parallelism without added complexity!
- * [Perfect Replayability](/blog/next-perfect-replayability) to completely eliminate heisenbugs, even in the presence of multithreading!
- * [Fearless FFI](/blog/next-fearless-ffi) to keep external code from corrupting Vale memory, and mitigate supply chain attacks.
+ * [Perfect Replayability](/blog/perfect-replayability-prototyped) to completely eliminate heisenbugs, even in the presence of multithreading!
+ * [Dependency Sandboxing](/blog/fearless-ffi) to keep external code from corrupting Vale memory, and mitigate supply chain attacks.
  * [Higher RAII](/blog/higher-raii-7drl), which helps us remember to call any function at some point in the future.
  * [Hybrid-Generational Memory](/blog/hybrid-generational-memory), which could reduce the overhead of generational references.
 
@@ -78,7 +78,7 @@ Hello Mars!
 
 
 
-Vale is part of the [Vale Language Project](/project), which explores, discovers, and publishes new programming language mechanisms that enable speed, safety, and ease of use.
+Our goal is to make Vale the best language for high-performance low-overhead use cases, such as servers, games, simulations, and systems programming.
 
 
 <center>

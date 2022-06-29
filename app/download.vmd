@@ -7,7 +7,7 @@ layout: onecolumn
 
 The Vale compiler is *version 0.2*.
 
-This compiler is still experimental, and not production-ready yet. Keep an eye out for 1.0, when it will be suitable for production. Use at your own risk, and report any bugs to the github!
+This compiler is still in alpha, and not production-ready yet. Keep an eye out for 1.0, when it will be suitable for production. Use at your own risk, and report any bugs to the github!
 
 
 # Releases

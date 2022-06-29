@@ -25,6 +25,16 @@
       </image-->
 
       <item>
+         <guid>https://verdagon.dev/blog/perfect-replayability-prototyped</guid>
+         <link>https://verdagon.dev/blog/perfect-replayability-prototyped</link>
+         <pubDate>Thu, 28 June 2022 10:15:00 -0400</pubDate>
+         <category>Programming Languages</category>
+         <category>Vale Programming Language</category>
+         <title>Perfect Replayability</title>
+         <author>noreply@verdagon.dev (Evan Ovadia)</author>
+      </item>
+
+      <item>
          <guid>https://verdagon.dev/blog/fearless-ffi</guid>
          <link>https://verdagon.dev/blog/fearless-ffi</link>
          <pubDate>Thu, 21 June 2022 10:15:00 -0400</pubDate>

@@ -34,7 +34,7 @@ Half-Life 3
 >>>>
 
 <<<<
-If a block has only one line, we can leave off the `return` and the semicolon.
+Functions can optionally end in an *expression*, which will return the value for us.
 ////
 ```vale
 func add2(x int) int { x + 2 }

@@ -14,7 +14,7 @@ series-entry: [Interfaces](/guide/interfaces)
 series-entry: [Generics](/guide/generics)
 series-entry: []()
 series-entry: [Regions](/guide/regions)
-series-entry: [Externs and Exports](/guide/externs)
+series-entry: [FFI: Externs and Exports](/guide/externs)
 series-entry: [Unsafe](/guide/unsafe)
 ---
 
@@ -48,6 +48,8 @@ If we're receiving a struct, we can *destructure* the incoming struct and put it
 In this example, we're taking the parts of the `Vec3` and assigning them into locals `a`, `b`, `c`.
 ////
 ```vale
+import stdlib.*;
+
 struct Vec3 imm {
   x int;
   y int;
@@ -76,7 +78,7 @@ exported func main() {
 a: 3
 d: 3
 g: 3
-```: `import stdlib.*;`
+```
 >>>>
 
 
@@ -127,6 +129,8 @@ Here, we're using a match statement to check what the user entered.
 In patterns, `_` matches any incoming data and discards it.
 ////
 ```
+import stdlib.*;
+
 exported func main() {
   match inputInt() {
     1 { println("One!"); }
@@ -134,7 +138,7 @@ exported func main() {
     _ { println("Other!"); }
   }
 }
-```: `import stdlib.*;`
+```
 >>>>
 
 <<<<
@@ -143,6 +147,8 @@ We can even check an incoming interface, to see what substruct it is.
 We can even destructure it at the same time!
 ////
 ```
+import stdlib.*;
+
 interface ISpaceship { }
 
 struct Firefly { name str; }
@@ -165,7 +171,7 @@ exported func main() {
 }
 ```stdout
 Firefly name Serenity
-```: `import stdlib.*;`
+```
 >>>>
 
 <slice new-color="default"/>

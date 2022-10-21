@@ -203,6 +203,13 @@ h5 {
 
 .callout {
   margin: 0 0 8px 0;
+  background-color: #FFFFE0;
+  padding: 8px;
+  border: 1px solid #FFE0A0;
+}
+
+.attention {
+  margin: 0 0 8px 0;
   background-color: #FFF0E0;
   padding: 8px;
   border: 2px solid #FFE0C0;

@@ -14,7 +14,7 @@ series-entry: [Interfaces](/guide/interfaces)
 series-entry: [Generics](/guide/generics)
 series-entry: [Patterns](/guide/patterns)
 series-entry: [Regions](/guide/regions)
-series-entry: [Externs and Exports](/guide/externs)
+series-entry: [FFI: Externs and Exports](/guide/externs)
 series-entry: [Unsafe](/guide/unsafe)
 ---
 
@@ -26,6 +26,8 @@ We can construct it using its *constructor* function, which has the same name an
 All structs are *mutable* by default, more on that in the Mutability section below.
 ////
 ```vale
+import stdlib.*;
+
 struct Spaceship {
   name str;
   numWings int;
@@ -37,7 +39,7 @@ exported func main() {
 }
 ```stdout
 Serenity
-```: `import stdlib.*;`
+```
 >>>>
 
 
@@ -70,6 +72,8 @@ We can specify a custom constructor for our struct.
 We just need to give it the same name as the struct. [#  Inside the constructor, we must call either another constructor or `constructor<T>`.]
 ////
 ```vale
+import stdlib.*;
+
 struct Spaceship {
   name str;
   numWings int;
@@ -82,7 +86,7 @@ exported func main() {
   ship = Spaceship();
   println(ship.name);
 }
-```: `import stdlib.*;`
+```
 >>>>
 
 <slice/>
@@ -97,6 +101,10 @@ Every mutable struct has exactly one owning reference at any given time. [# Ther
 When we create a mutable struct, we get the owning reference to it. When the owning reference disappears, the struct is automatically deallocated (via `drop`, explained below).
 ////
 ```vale
+import stdlib.*;
+
+struct Spaceship { name str; fuel int; }
+
 exported func main() {
   ship = Spaceship("Serenity", 2);
   // ship is an owning reference
@@ -105,7 +113,7 @@ exported func main() {
 
   // implicitly drops ship
 }
-```: `import stdlib.*; struct Spaceship { name str; fuel int; }`
+```
 >>>>
 
 <slice>
@@ -127,11 +135,13 @@ We can make another reference to a struct with the `&` symbol. It will be a non-
 In this example, the type of `owningRef` is `Spaceship`, and the type of `nonOwningRef` is `&Spaceship`.
 ////
 ```vale
+struct Spaceship { name str; fuel int; }
+
 exported func main() {
   owningRef = Spaceship("Serenity", 2);
   nonOwningRef = &owningRef;
 }
-```: `struct Spaceship { name str; fuel int; }`
+```
 >>>>
 
 <slice/>
@@ -147,19 +157,31 @@ This is used to influence when the struct is `drop`ped, to keep it alive for lon
 In this example, the `a` local is giving up the owning reference, and we're putting it into the `b` local.
 ////
 ```vale
+struct Spaceship {
+  name str;
+  fuel int;
+}
+
 exported func main() {
   a = Spaceship("Serenity", 2); «alocal»
   b = a; // Move the ship from a to b.
   // b now owns the Spaceship.
   // Can't use a now.
 }
-```: `struct Spaceship { name str; fuel int; }`
+```
 >>>>
 
 <<<<
 It works the same way when passing an owning reference to a function.
 ////
 ```vale
+import stdlib.*;
+
+struct Spaceship {
+  name str;
+  fuel int;
+}
+
 func foo(b Spaceship) {
   println(b.name);
 }
@@ -170,7 +192,7 @@ exported func main() {
   foo(a);
   // Can't use a now.
 }
-```: `import stdlib.*; struct Spaceship { name str; fuel int; }`
+```
 >>>>
 
 
@@ -193,6 +215,11 @@ Here we can see where the implicit call to `drop` is.
 `drop` is called when the owning reference goes away, which in this case is `ship`.
 ////
 ```vale
+struct Spaceship {
+  name str;
+  fuel int;
+}
+
 exported func main() {
   ship = Spaceship("Serenity", 2);
   // ship is an owning reference
@@ -206,7 +233,7 @@ exported func main() {
 // func drop(s Spaceship) {
 //   destruct s; «destruct» // frees
 // }
-```: `struct Spaceship { name str; fuel int; }`
+```
 >>>>
 
 <<<<
@@ -325,6 +352,8 @@ Vale also automatically derives the functions `println`, `str`, `hash`, `==`, an
 Immutable structs cannot have drop functions. [# See [this article](https://verdagon.dev/blog/raii-next-steps) for the reasoning behind this.]
 ////
 ```vale
+import stdlib.*;
+
 struct Spaceship imm {
   name str;
   numWings int;
@@ -339,7 +368,7 @@ exported func main() {
 ```stdout
 2
 2
-```: `import stdlib.*;`
+```
 >>>>
 
 <slice>
@@ -353,16 +382,18 @@ exported func main() {
 <<<<
 A tuple is a simple struct, whose members are named 0, 1, 2, etc.
 
-We can make a tuple in Vale with parentheses (like `(5, true, 42)`), and can access them with a dot like `arr.0`.
+We can make a tuple in Vale with parentheses (like `(5, true, 42)`), and can access them with a dot like `tup.0`.
 ////
 ```vale
+import stdlib.*;
+
 exported func main() {
-  arr = (5, true, 42);
-  println("Babylon " + arr.0);
+  tup = (5, true, 42);
+  println("Babylon " + tup.0);
 }
 ```stdout
 Babylon 5
-```: `import stdlib.*;`
+```
 >>>>
 
 

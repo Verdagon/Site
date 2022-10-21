@@ -14,7 +14,7 @@ series-entry: [Interfaces](/guide/interfaces)
 series-entry: [Generics](/guide/generics)
 series-entry: [Patterns](/guide/patterns)
 series-entry: [Regions](/guide/regions)
-series-entry: [Externs and Exports](/guide/externs)
+series-entry: [FFI: Externs and Exports](/guide/externs)
 series-entry: [Unsafe](/guide/unsafe)
 ---
 
@@ -38,16 +38,18 @@ Then:
 
 
 ```vale
+import stdlib.*;
+
 exported func main() {
   println("Hello world!");
 }
 ```stdout
 Hello world!
-```: `import stdlib.*;`
+```
 
 
 
-Every Vale program must have an `exported` main function like the above. [# `exported` means it can be called by the OS or other languages such as C. See [Externs and Exports](/guide/externs) for more.]
+Every Vale program must have an `exported` main function like the above. [# `exported` means it can be called by the OS or other languages such as C. See [FFI: Externs and Exports](/guide/externs) for more.]
 
 
 Every source file must belong to a module. That's what the `mymodule=` is for. For now, you can put `mymodule=` in front of all of your .vale files (or directories containing .vale), and in [Modules](/guide/modules) we'll explain more about what modules are.
@@ -71,19 +73,23 @@ if you put ~/Vale in your PATH. [#path] We recommend it!
 We can make a variable with the `=` symbol.
 ////
 ```vale
+import stdlib.*;
+
 exported func main() {
   x = "world!";
   println("Hello " + x);
 }
 ```stdout
 Hello world!
-```: `import stdlib.*;`
+```
 >>>>
 
 <<<<
 We can change a variable's contents with the `set` keyword.
 ////
 ```vale
+import stdlib.*;
+
 exported func main() {
   x = "world!";
   set x = "Antarctica!";
@@ -91,7 +97,7 @@ exported func main() {
 }
 ```stdout
 Hello Antarctica!
-```: `import stdlib.*;`
+```
 >>>>
 
 <slice>
@@ -119,13 +125,15 @@ In this example, `a` is of type `str`. If we want, we can specify it explicitly 
 ...though we usually leave it out, because Vale uses type inference to figure out the type of `a` for us.
 ////
 ```vale
+import stdlib.*;
+
 exported func main() {
   a str = "world!";
   println("Hello " + a);
 }
 ```stdout
 Hello world!
-```: `import stdlib.*;`
+```
 >>>>
 
 <slice/>

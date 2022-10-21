@@ -7,16 +7,16 @@ path: home
 ---
 
 
-# Vale is the fast, safe, and easy programming language.
+# Vale is a fast, safe, and easy programming language.
 
 
 <<<<
 
 Vale is:
 
- * *Fast:* Vale is an AOT compiled, statically-typed language that uses the new [generational references](/blog/generational-references) technique for memory safety with speed and flexibility, and will soon have [region borrow checking](/blog/zero-cost-refs-regions) to make it even faster.
+ * *Fast:* Vale is AOT compiled to LLVM, statically-typed, and uses the new [generational references](/blog/generational-references) technique for memory safety with speed and flexibility, and will soon have [region borrow checking](/blog/zero-cost-refs-regions) to make it even faster.
  * *Safe:* It is the [safest native language](/memory-safe), thanks to [generational references](/blog/generational-references) and [Fearless FFI](https://verdagon.dev/blog/fearless-ffi).
- * *Easy:* Vale is focused on flexibility and developer velocity, so we don't have to spend all of our time refactoring or debugging.
+ * *Easy:* Vale has memory-safe single ownership without garbage collection or a borrow checker, which makes it easy to write safe, fast code.
 
 
 Vale is currently in alpha! [Download version 0.2 here.](/download)
@@ -33,7 +33,6 @@ We'll soon bring even more new features and designs into the programming world:
  * [Seamless Concurrency](/blog/seamless-fearless-structured-concurrency) for parallelism without added complexity!
  * [Perfect Replayability](/blog/perfect-replayability-prototyped) to completely eliminate heisenbugs, even in the presence of multithreading!
  * [Dependency Sandboxing](/blog/fearless-ffi) to keep external code from corrupting Vale memory, and mitigate supply chain attacks.
- * [Higher RAII](/blog/higher-raii-7drl), which helps us remember to call any function at some point in the future.
  * [Hybrid-Generational Memory](/blog/hybrid-generational-memory), which could reduce the overhead of generational references.
 
 
@@ -42,11 +41,12 @@ See the [Roadmap](/roadmap) for more!
 
 *Featuring*:
 
- * [Single Ownership](/guide/references), move semantics, [Higher RAII](/blog/higher-raii-7drl)
+ * [Single Ownership](/guide/references) and move semantics without needing a borrow checker.
+ * [Higher RAII](/blog/higher-raii-7drl), which helps us remember to call any function at some point in the future.
  * [Statically Typed](/guide/introduction) with type inference.
  * [Memory Safe](/guide/references#nonowning) with [generational references](/blog/generational-references)
  * [Generics](/guide/generics) and const generics
- * [Universal Function Call Syntax](/guide/introduction#functions)
+ * [Universal Function Call Syntax](/guide/functions#functions--methods)
  * [Mutable and Immutable Objects](/guide/structs#mutability)
  * [Patterns](/guide/patterns) with destructuring
  * [Regions](/guide/regions) for different allocation strategies. (planned!)
@@ -58,15 +58,19 @@ See the [Roadmap](/roadmap) for more!
 
 
 ```vale
+import stdlib.*;
+
 exported func main() {
   println("Hello world!");
 }
 ```stdout
 Hello world!
-```: `import stdlib.*;`
+```
 
 
 ```vale
+import stdlib.*;
+
 exported func main() {
   planets = [#]["Venus", "Earth", "Mars"];
   foreach planet in planets {
@@ -77,7 +81,7 @@ exported func main() {
 Hello Venus!
 Hello Earth!
 Hello Mars!
-```: `import stdlib.*;`
+```
 
 
 
@@ -126,6 +130,8 @@ Follow along via our [RSS feed](/rss.xml), [twitter](https://twitter.com/vale_pl
 
 *What's been happening recently:*
 
+ * *Aug 22, 2022:* Parsing and Typing passes now work with generics!
+ * *Jul 5, 2022:* Templates to generics transition started!
  * *Jun 11, 2022:* [Perfect replayability now supports structs!](https://github.com/ValeLang/Vale/pull/505)
  * *May 25, 2022:* [First successful run of perfect replayability!](https://github.com/ValeLang/Vale/pull/500)
  * *May 10, 2022:* [Vale 0.2 Released](/blog/version-0.2-released)
@@ -157,9 +163,11 @@ Vale is [open for contributions](/contribute), thank you to our team of [contrib
 </center>
 
 
-*Thank you to our [Gold and Platinum tier](https://github.com/sponsors/ValeLang) sponsors!*
+*Thank you to our [Gold and Platinum tier](https://github.com/sponsors/ValeLang) sponsors!* Your support makes all this possible.
 
  * [Arthur Weagel](https://github.com/aweagel)
+ * [Radek Miček](https://github.com/radekm)
+ * [Geomitron](https://github.com/Geomitron)
  * [Joseph Jaoudi (linkmonitor)](https://github.com/linkmonitor)
  * [Tim Stack (tstack)](https://github.com/tstack)
  * [Alon Zakai (kripken)](https://github.com/kripken)
@@ -167,7 +175,5 @@ Vale is [open for contributions](/contribute), thank you to our team of [contrib
  * [Sergey Davidoff (schnatsel)](https://github.com/Shnatsel)
  * [Ian (linuxy)](https://github.com/linuxy)
  * [Ivo Balbaert](https://github.com/Ivo-Balbaert/)
- * [Kevin Navero](https://github.com/solstice333/)
- * Ilya Seletsky
 
 >>>>

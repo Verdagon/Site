@@ -7,7 +7,7 @@ layout: onecolumn
 
 The Vale compiler is *version 0.2*.
 
-This compiler is still in alpha, and not production-ready yet. Keep an eye out for 1.0, when it will be suitable for production. Use at your own risk, and report any bugs to the github!
+This compiler is still in alpha, and not production-ready yet. Keep an eye out for 1.0, when it will be suitable for production. Use at your own risk, and [report any bugs](https://github.com/ValeLang/Vale/issues)!
 
 
 # Releases
@@ -21,7 +21,7 @@ This release:
 
  * Enables [Higher RAII](https://verdagon.dev/blog/higher-raii-7drl), one of Vale's main innovations.
  * Adds [const generics](https://verdagon.dev/blog/const-generics-spread).
- * Adds [concept functions](verdagon.dev/blog/concept-functions).
+ * Adds [concept functions](https://verdagon.dev/blog/concept-functions).
  * Simplifies the language's syntax:
     * We no longer need `impl MyInterface` in override function signatures!
     * There is no longer a readwrite-vs-readonly reference distinction.

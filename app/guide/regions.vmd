@@ -14,7 +14,7 @@ series-entry: [Interfaces](/guide/interfaces)
 series-entry: [Generics](/guide/generics)
 series-entry: [Patterns](/guide/patterns)
 series-entry: []()
-series-entry: [Externs and Exports](/guide/externs)
+series-entry: [FFI: Externs and Exports](/guide/externs)
 series-entry: [Unsafe](/guide/unsafe)
 ---
 

@@ -14,7 +14,7 @@ series-entry: [Interfaces](/guide/interfaces)
 series-entry: [Generics](/guide/generics)
 series-entry: [Patterns](/guide/patterns)
 series-entry: [Regions](/guide/regions)
-series-entry: [Externs and Exports](/guide/externs)
+series-entry: [FFI: Externs and Exports](/guide/externs)
 series-entry: [Unsafe](/guide/unsafe)
 ---
 
@@ -26,6 +26,13 @@ An owning reference keeps an object alive. When a struct has no owning reference
 Every mutable struct has exactly one owning reference pointing to it. [#ownership]
 ////
 ```vale
+import stdlib.*;
+
+struct Spaceship {
+  name str;
+  fuel int;
+}
+
 exported func main() {
   ship = Spaceship("Serenity", 2);
   // ship is an owning reference
@@ -34,7 +41,7 @@ exported func main() {
 
   // implicit (ship).drop()
 }
-```: `import stdlib.*; struct Spaceship { name str; fuel int; }`
+```
 >>>>
 
 
@@ -48,6 +55,8 @@ When we say `a = b;` for an immutable struct, both a and b can still be used.
 Immutables are simple to use. The rest of the page is about references to mutable structs.
 ////
 ```vale
+import stdlib.*;
+
 struct Vec3 imm {
   x int;
   y int;
@@ -61,7 +70,7 @@ exported func main() {
 }
 ```stdout
 7
-```: `import stdlib.*;`
+```
 >>>>
 
 
@@ -75,19 +84,25 @@ This is used to influence when the struct is `drop`ped, to keep it alive for lon
 In this example, the `a` local is giving up the owning reference, and we're putting it into the `b` local.
 ////
 ```vale
+struct Spaceship {}
+
 exported func main() {
   a = Spaceship(); «alocal»
   b = a; // Move the ship from a to b.
   // b now owns the Spaceship.
   // Can't use a now.
 }
-```: `struct Spaceship {}`
+```
 >>>>
 
 <<<<
 It works the same way when passing an owning reference to a function.
 ////
 ```vale
+import stdlib.*;
+
+struct Spaceship { name str; }
+
 func foo(b Spaceship) {
   println(b.name);
 }
@@ -96,7 +111,7 @@ exported func main() {
   foo(a); // Move a into foo's b
   // Can't use a now.
 }
-```: `import stdlib.*; struct Spaceship { name str; }`
+```
 >>>>
 
 
@@ -138,6 +153,8 @@ To make a borrow reference, use the & symbol.
 In this example, we're making a borrow reference to `ship` and giving it to the `foo` function.
 ////
 ```vale
+import stdlib.*;
+
 struct Spaceship {
   name str;
   numWings int;
@@ -149,7 +166,7 @@ exported func main() {
   ship = Spaceship("Serenity", 2);
   foo(&ship);
 }
-```: `import stdlib.*;`
+```
 >>>>
 
 <slice/>
@@ -173,6 +190,8 @@ In other words, we cannot reach into a struct through a weak reference directly;
 In this example, we're making a `o` borrow reference from the `ship.origin` weak reference.
 ////
 ```vale
+import stdlib.*;
+
 weakable struct Base {
   name str;
 }
@@ -202,7 +221,7 @@ exported func main() {
 ```stdout
 Ship base: Zion
 Ship base unknown!
-```: `import stdlib.*;`
+```
 >>>>
 
 <slice new-color="afterword">
@@ -231,6 +250,8 @@ In these early days of Vale, objects are always on the heap. Soon, objects will 
 This example puts the `Spaceship` on the heap.
 ////
 ```vale
+import stdlib.*;
+
 struct Spaceship {
   name str;
   numWings int;
@@ -241,7 +262,7 @@ exported func main() {
 }
 ```stdout
 Enterprise
-```: `import stdlib.*;`
+```
 >>>>
 
 <slice new-color="default"/>

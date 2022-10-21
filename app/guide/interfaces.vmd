@@ -14,7 +14,7 @@ series-entry: []()
 series-entry: [Generics](/guide/generics)
 series-entry: [Patterns](/guide/patterns)
 series-entry: [Regions](/guide/regions)
-series-entry: [Externs and Exports](/guide/externs)
+series-entry: [FFI: Externs and Exports](/guide/externs)
 series-entry: [Unsafe](/guide/unsafe)
 ---
 
@@ -138,6 +138,8 @@ It takes functions (or lambdas) as arguments, to use for the interface's methods
 In this example, we're giving it a lambda for its `launch` method.
 ////
 ```vale
+import stdlib.*;
+
 interface IShip {
   func launch(virtual ship &IShip);
 }
@@ -149,7 +151,7 @@ exported func main() {
 
   x.launch();
 }
-```: `import stdlib.*;`
+```
 >>>>
 
 <slice new-color="afterword"/>

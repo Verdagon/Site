@@ -28,6 +28,11 @@
         "type": 302
       },
       {
+        "source": "/project",
+        "destination": "/vision/vision",
+        "type": 302
+      },
+      {
         "source": "/vision",
         "destination": "/vision/vision",
         "type": 302

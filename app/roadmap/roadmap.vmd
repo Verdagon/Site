@@ -23,7 +23,7 @@ Vale's medium-term goal is to prototype the more advanced performance features, 
 
 ////
 
-We'll also be publishing articles biweekly during all this, as part of the [Vale Language Project](https://vale.dev/project). There will be some main themes:
+We'll also be publishing articles biweekly during all this. There will be some main themes:
 
 The *Next Decade in Languages* series will talk about things that we think will make great strides in the next decade, and unknown gems with a lot of potential.
 
@@ -269,6 +269,8 @@ The *Thoughts on an Automatic Rust* series will talk about Rust's innovations, a
 
 What's been happening recently:
 
+ * *Aug 22, 2022:* Parsing and Typing passes now work with generics!
+ * *Jul 5, 2022:* Templates to generics transition started!
  * *Jun 11, 2022:* [Perfect replayability now supports structs!](https://github.com/ValeLang/Vale/pull/505)
  * *May 25, 2022:* [First successful run of perfect replayability!](https://github.com/ValeLang/Vale/pull/500)
  * *May 10, 2022:* [Vale 0.2 Released](/blog/version-0.2-released)

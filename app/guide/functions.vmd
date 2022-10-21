@@ -14,7 +14,7 @@ series-entry: [Interfaces](/guide/interfaces)
 series-entry: [Generics](/guide/generics)
 series-entry: [Patterns](/guide/patterns)
 series-entry: [Regions](/guide/regions)
-series-entry: [Externs and Exports](/guide/externs)
+series-entry: [FFI: Externs and Exports](/guide/externs)
 series-entry: [Unsafe](/guide/unsafe)
 ---
 
@@ -22,6 +22,8 @@ series-entry: [Unsafe](/guide/unsafe)
 Here we have a simple function that `return`s the argument plus two.
 ////
 ```vale
+import stdlib.*;
+
 func add2(x int) int {
   return x + 2;
 }
@@ -30,7 +32,7 @@ exported func main() {
 }
 ```stdout
 Half-Life 3
-```: `import stdlib.*;`
+```
 >>>>
 
 <<<<
@@ -49,22 +51,26 @@ func add2(x int) int { x + 2 }
 We can also make a *closure*, a function inside another one.
 ////
 ```vale
+import stdlib.*;
+
 exported func main() {
   add2 = (x int) => { x + 2 };
   println("Half-Life " + add2(1));
 }
-```: `import stdlib.*;`
+```
 >>>>
 
 <<<<
 We can leave the type off of a lambda's parameter, to make it shorter. [# Taking out the parameter's type makes this a "generic" lambda, see [generics](/guide/generics) for more.]
 ////
 ```vale
+import stdlib.*;
+
 exported func main() {
   add2 = (x) => { x + 2 };
   println("Half-Life " + add2(1));
 }
-```: `import stdlib.*;`
+```
 >>>>
 
 
@@ -74,11 +80,15 @@ exported func main() {
 In Vale, functions and methods are the same thing, so these two calls are exactly equivalent.
 ////
 ```vale
+import stdlib.*;
+import stdlib.stringutils.*;
+import stdlib.collections.*;
+
 exported func main() {
   s1 = "Hail Hydra!".split(" ");
   s2 = split("Hail Hydra!", " ");
 }
-```: `import stdlib.*; import stdlib.stringutils.*; import stdlib.collections.*;`
+```
 >>>>
 
 

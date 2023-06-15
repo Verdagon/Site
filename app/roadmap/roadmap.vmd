@@ -16,10 +16,13 @@ Vale's medium-term goal is to prototype the more advanced performance features, 
 
  * *0.1, done 2021:* Foundational features (see below) and Generational References
  * *0.2, done May 2022:* FFI, Higher RAII, Modules, Faster Compiles
- * *0.3, Summer 2022:* Basic region borrow checking, Pure calls, immutable regions
- * *0.4, Fall 2022:* Seamless Structured Concurrency, Fearless FFI, Perfect Replayability
- * *0.5, Early 2022:* Templates -> Generics, Incremental compilation, Parallel compilation, C++-equivalent Unsafe Mode
- * *0.6, Mid 2023:* Hybrid-Generational Memory, and final benchmarks
+ * *0.2.1, done Summer 2022:* Templates -> Generics
+ * *0.2.2, done Early 2023:* Linear style, zero-cost programs
+ * *0.3, Summer 2023:* Basic region borrow checking, Pure calls, immutable regions
+ * *0.4, Late 2023:* Seamless Structured Concurrency, Fearless FFI, Perfect Replayability
+ * *0.5, Summer 2024:* Incremental + parallel compilation, inline data, C++-equivalent Unsafe Mode
+ * *0.6, Late 2024:* Isolates and Cells
+ * *0.6.1, Early 2025:* Optimization, Benchmarking
 
 ////
 
@@ -269,6 +272,12 @@ The *Thoughts on an Automatic Rust* series will talk about Rust's innovations, a
 
 What's been happening recently:
 
+ * *June 9: 2023:* Regions backend portion merged!
+ * *May 1: 2023:* Regions prototyped!
+ * *Mar 18: 2023:* First program with zero-cost region borrowing done!
+ * *Mar 9: 2023:* Region borrowing proof-of-concept finished!
+ * *Nov 16, 2022:* [Full regions design](/blog/zero-cost-memory-safety-regions-overview) preview published!
+ * *Sep 29, 2022:* Templates to generics transition complete!
  * *Aug 22, 2022:* Parsing and Typing passes now work with generics!
  * *Jul 5, 2022:* Templates to generics transition started!
  * *Jun 11, 2022:* [Perfect replayability now supports structs!](https://github.com/ValeLang/Vale/pull/505)

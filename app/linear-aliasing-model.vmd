@@ -1,0 +1,155 @@
+---
+title: The Linear-Aliasing Model
+realm: blog
+path: linear-aliasing-model
+layout: annotated
+namespace: c-blog m-annotated
+---
+
+Instead of the more traditional approaches like reference counting, garbage collection, or borrow checking, Vale achieves its memory safety through something we call the *Linear-Aliasing Model*.
+
+
+The Linear-Aliasing Model is where every object's lifetime is determined by exactly one owner, yet we can also have as many mutable references to it as we want. In other words, each type is *linear*, yet freely *aliasable* (we'll explain these further below).
+
+
+This model offers efficient memory safety, plus be able to use shared mutability wherever we want. [# Note that shared mutability itself can have run-time cost, but it's opt-in and the user has the flexibility to make that tradeoff where it makes sense.]
+
+
+The rest of this page is an overview, but if you'd like to see it in action, these articles will be helpful:
+
+ * [Single Ownership and Memory Safety without Borrow Checking, RC, or GC](/blog/single-ownership-without-borrow-checking-rc-gc), which approaches it from a C foundation.
+ * [What Vale Taught Me About Linear Types, Borrowing, and Memory Safety](/blog/linear-types-borrowing) which talks about how linear types allow memory safety without cost.
+ * [Vale's Higher RAII, the pattern that saved me a vital 5 hours in the 7DRL Challenge](/blog/higher-raii-7drl)
+ * [Generational References](/blog/generational-references), which talks about blending single ownership and mutable aliasing.
+
+
+There are four basic types:
+
+
+<<<<
+*Owned values*, written like `AStruct`, which inhabits exactly one variable, struct field, or array element. When that containing stack frame, struct, or array goes out of scope, this `AStruct` is destroyed.
+////
+```vale
+struct Ship { fuel int; }
+exported func main() {
+  ship = Ship(42);
+  println(ship.fuel);
+  destruct ship;
+}
+```stdout
+42
+```
+>>>>
+
+<<<<
+*Owning pointers*, written like `^AStruct`, which lives on the heap, yet is still "owned" by a containing stack frame, struct, or array. When that containing thing goes out of scope, the `AStruct` lives on. [# This is most similar to C++'s `unique_ptr<AStruct>`. It's like Rust's `Box<AStruct>`, but freely aliasable.]
+////
+```vale
+struct Ship { fuel int; }
+exported func main() {
+  ship = ^Ship(42);
+  destruct ship;
+}
+```stdout
+42
+```
+>>>>
+
+
+<<<<
+*References*, written like `&AStruct`, which doesn't affect the object's lifetime or when it's destroyed, yet can be used to read or write to the `AStruct`.
+////
+```vale
+struct Ship { fuel int; }
+exported func main() {
+  ship = Ship(42);
+  ship_ref = &ship;
+  println(ship_ref.fuel);
+  destruct ship;
+}
+```stdout
+42
+```
+>>>>
+
+And lastly, *copy types*, such as (`bool`, `float`, etc.), which are copied freely, similar to most languages.
+
+
+The Linear-Aliasing Model adheres to *single ownership*:
+
+ * An owned value inhabits exactly one variable, struct field, or array element.
+ * An owned value on the heap is pointed at by exactly one owning pointer.
+
+
+We can transfer an owned value or owning pointer from one place to another via a *move* operation. [# We can also swap something into its place. In Vale, this is via the `set` operator.] Specifically:
+
+ * When we move out of a variable, the compiler invalidates it and prevents us from using it again.
+ * Only if we destroy a struct can we move its members out. [# Also known as a "move destructure".]
+ * We can only move an element out of an array if we pop it from the end, or shift all subsequent elements.
+
+These are a certain flavor of *move semantics*, which uphold single ownership for a language.
+
+
+It uses *linear typing* in that the user is required to _explicitly destroy_ an owned value or owning pointer, and the compiler throws an error if the user forgets. The compiler won't automatically destroy something for us. [# If the compiler did automatically destroy things, it would be an affine type system instead of linear.] [# In Vale, we can actually opt into this for specific structs.]
+
+
+Linear typing has a lot of benefits:
+
+ * It gives memory safety with no run-time overhead.
+ * Safety from data races, since only one thread owns an object at a time.
+ * Objects can live inside the stack and inside other objects or arrays, which makes accessing them faster.
+ * We can use [higher RAII](/blog/single-ownership-without-borrow-checking-rc-gc) so the compiler can guarantee we don't forget to some arbitrary future operation.
+
+
+However, linear typing alone has historically had some drawbacks:
+
+ * It often can't do fast approaches like intrusive data structures and graphs.
+ * It can be at odds with interfaces and traits, as we're often required to pass dependencies in via parameter, which breaks API stability.
+ * It can't use patterns that help us decouple our codebases and make them more flexible, like observers, back-references, [dependency references](https://en.wikipedia.org/wiki/Dependency_injection), callbacks, [delegates](https://medium.com/@nimjea/delegation-pattern-in-swift-4-2-f6aca61f4bf5), etc.
+
+
+These drawbacks are because linear typing doesn't allow *mutable aliasing*.
+
+
+We address that by *adding mutable aliasing* via [generational references](/blog/generational-references), which can do a run-time check to see if the target object is still alive. These checks are elided for owned values and owning pointers. In Vale, these checks are also eliminated by static analysis and [regions](/blog/zero-cost-borrowing-regions-overview).
+
+
+Generational references are particularly suited to this task because they can read and write to the target data without affecting its lifetime.
+
+
+Suddenly, we have all the benefits of mutable aliasing:
+
+ * We can do intrusive data structures and graphs.
+ * Interfaces and traits become tractable again, because objects can modify things outside themselves.
+ * We can use observers, back-references, dependency references, callbacks, delegates, and any other pattern.
+
+...while still having the benefits of linear typing.
+
+
+This addition isn't free; every allocation (though not every object [# A struct will often share the generation of the struct that contains it.]) needs an 8-byte random generation number at the top. This could soon be obviated with `uni`que references or [isolates](/blog/zero-cost-borrowing-regions-part-2-isolates).
+
+
+We end up with a model that's fast, safe, and most importantly, *flexible*. We can decide to use references only where necessary, or perhaps we can decide to drop into a more linear style where profiling suggests we should optimize.
+
+
+For an example of a program that uses both the Linear-Aliasing Model and regions, see [this tiny roguelike game](https://github.com/Verdagon/RegionsBenchmarks/blob/main/tiny-roguelike/roguelike.vale). [# Regions are still in alpha, so forgive any manual lowering and verbosity in the program.]
+
+
+If you'd like to see more, check out these articles:
+
+ * [Single Ownership and Memory Safety without Borrow Checking, RC, or GC](/blog/single-ownership-without-borrow-checking-rc-gc), which approaches it from a C foundation.
+ * [What Vale Taught Me About Linear Types, Borrowing, and Memory Safety](/blog/linear-types-borrowing) which talks about how linear types allow memory safety without cost.
+ * [Vale's Higher RAII, the pattern that saved me a vital 5 hours in the 7DRL Challenge](/blog/higher-raii-7drl)
+ * [Generational References](/blog/generational-references), which talks about blending single ownership and mutable aliasing.
+
+
+The Linear-Aliasing Model is one of many techniques that Vale is bringing into the mainstream, along with:
+
+ * [Region borrowing](/blog/zero-cost-borrowing-regions-overview) to eliminate memory safety overhead.
+ * [Perfect Replayability](/blog/perfect-replayability-prototyped), to record all inputs and replay execution, and completely solve heisenbugs and track down race conditions.
+ * [Higher RAII](/blog/single-ownership-without-borrow-checking-rc-gc), where the language can enforce that we don't forget to do an arbitrary future operation.
+ * [Fearless FFI](/blog/fearless-ffi) that lets us more safely interface with C and other native languages.
+
+
+If you believe in the direction Vale is heading, please consider [sponsoring us on GitHub](https://github.com/sponsors/ValeLang)! And if you have any questions, feel free to [make an issue](https://github.com/ValeLang/Vale/issues) or ask on the [discord server](https://discord.gg/SNB8yGH) or [subreddit](https://reddit.com/r/vale).
+

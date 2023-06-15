@@ -14,7 +14,7 @@ path: home
 
 Vale is:
 
- * *Fast:* Vale is AOT compiled to LLVM, statically-typed, and uses the new [generational references](/blog/generational-references) technique for memory safety with speed and flexibility, and will soon have [region borrow checking](/blog/zero-cost-refs-regions) to make it even faster.
+ * *Fast:* Vale is AOT compiled to LLVM, statically-typed, and uses the new [generational references](/blog/generational-references) technique for memory safety with speed and flexibility, and will soon have [region borrow checking](/blog/zero-cost-memory-safety-regions-overview) to make it even faster.
  * *Safe:* It is the [safest native language](/memory-safe), thanks to [generational references](/blog/generational-references) and [Fearless FFI](https://verdagon.dev/blog/fearless-ffi).
  * *Easy:* Vale has memory-safe single ownership without garbage collection or a borrow checker, which makes it easy to write safe, fast code.
 
@@ -29,7 +29,7 @@ Read comparisons with [C++, Javascript, and Rust](/comparisons)!
 
 We'll soon bring even more new features and designs into the programming world:
 
- * A [region borrow checker](/blog/zero-cost-refs-regions) to eliminate memory-safety overhead.
+ * A [region borrow checker](/blog/zero-cost-memory-safety-regions-overview) to eliminate memory-safety overhead.
  * [Seamless Concurrency](/blog/seamless-fearless-structured-concurrency) for parallelism without added complexity!
  * [Perfect Replayability](/blog/perfect-replayability-prototyped) to completely eliminate heisenbugs, even in the presence of multithreading!
  * [Dependency Sandboxing](/blog/fearless-ffi) to keep external code from corrupting Vale memory, and mitigate supply chain attacks.
@@ -49,7 +49,7 @@ See the [Roadmap](/roadmap) for more!
  * [Universal Function Call Syntax](/guide/functions#functions--methods)
  * [Mutable and Immutable Objects](/guide/structs#mutability)
  * [Patterns](/guide/patterns) with destructuring
- * [Regions](/guide/regions) for different allocation strategies. (planned!)
+ * [Regions](/blog/zero-cost-memory-safety-regions-overview) for different allocation strategies. (planned!)
  * [Interface Constructors](/guide/interfaces#sealedconstructors) (planned!)
 
 
@@ -72,7 +72,7 @@ Hello world!
 import stdlib.*;
 
 exported func main() {
-  planets = [#]["Venus", "Earth", "Mars"];
+  planets = [#]("Venus", "Earth", "Mars");
   foreach planet in planets {
     println("Hello " + planet + "!");
   }
@@ -101,6 +101,15 @@ Our goal is to make Vale the best language for high-performance low-overhead use
 
 *Recent posts:*
 
+ * [Single Ownership and Memory Safety without Borrow Checking, RC, or GC](/blog/single-ownership-without-borrow-checking-rc-gc)
+ * [The Link Between Generics, Compile Times, Type-Erasure, Cloud Building, and Hot-Code Reloading](/blog/generics-compile-times)
+ * [What Vale Taught Me About Linear Types, Borrowing, and Memory Safety](/blog/linear-types-borrowing)
+ * [Implementing Vale's Region Borrowing, and its Unexpected Quest](/blog/making-regions-part-2-generics)
+ * [How To Survive Your Project's First 100,000 Lines](/blog/first-100k-lines)
+ * [Memory Safety Approaches and Development Velocity](/blog/when-to-use-memory-safe-part-2)
+ * [Implementing a New Memory Safety Approach, Part 1](/blog/making-regions-part-1-human-factor)
+ * [Zero-Cost Memory Safety with Vale Regions (Preview)](/blog/zero-cost-memory-safety-regions-overview)
+ * [Hash Codes, Non-Determinism, and Other Eldritch Horrors](/blog/generics-hash-codes-horrors)
  * [Perfect Replayability](/blog/perfect-replayability-prototyped)
  * [Vale's Fearless FFI, for Safer Dependencies and Supply-Chain Attack Mitigation](/blog/fearless-ffi)
  * [Vale 0.2 Released](/blog/version-0.2-released)
@@ -130,6 +139,12 @@ Follow along via our [RSS feed](/rss.xml), [twitter](https://twitter.com/vale_pl
 
 *What's been happening recently:*
 
+ * *June 9: 2023:* Regions backend portion merged!
+ * *May 1: 2023:* Regions prototyped!
+ * *Mar 18: 2023:* First program with zero-cost region borrowing done!
+ * *Mar 9: 2023:* Region borrowing proof-of-concept finished!
+ * *Nov 16, 2022:* [Full regions design](/blog/zero-cost-memory-safety-regions-overview) preview published!
+ * *Sep 29, 2022:* Templates to generics transition complete!
  * *Aug 22, 2022:* Parsing and Typing passes now work with generics!
  * *Jul 5, 2022:* Templates to generics transition started!
  * *Jun 11, 2022:* [Perfect replayability now supports structs!](https://github.com/ValeLang/Vale/pull/505)
@@ -166,6 +181,7 @@ Vale is [open for contributions](/contribute), thank you to our team of [contrib
 *Thank you to our [Gold and Platinum tier](https://github.com/sponsors/ValeLang) sponsors!* Your support makes all this possible.
 
  * [Arthur Weagel](https://github.com/aweagel)
+ * [Kiril Mihaylov](https://github.com/KirilMihaylov)
  * [Radek Miček](https://github.com/radekm)
  * [Geomitron](https://github.com/Geomitron)
  * [Joseph Jaoudi (linkmonitor)](https://github.com/linkmonitor)

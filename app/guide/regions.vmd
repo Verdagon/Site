@@ -32,7 +32,7 @@ We often call `main`'s region the *main region*.
 <<<<
 A common pattern is for a function to regard all of its parameters as coming from a read-only region.
 
-Notice the `<'a ro>`. The `'` means region, followed by its name (`a`), followed by its permission (`ro` which means read-only).
+Notice the `<a' ro>`. The `'` means region, followed by its name (`a`), followed by its permission (`ro` which means read-only).
 
 When main passes in `allShips` from the main region into the `'a &List<Ship>` parameter, `biggestShipName`:
 
@@ -52,8 +52,8 @@ struct Ship {
   size int;
 }
 
-func biggestShipName<'a ro>(
-  ships 'a &List<Ship>)
+func biggestShipName<a' ro>(
+  ships &a'List<Ship>)
 str {
   biggest = ships.0;
   foreach ship in ships {
@@ -98,7 +98,7 @@ There's a corresponding `rwlock` method for `read-write` access.
 
 The compiler keeps track of all references' regions, and makes sure that no references outlive their lock.
 ////
-```vale
+```
 struct Game {
   bases List<Base>;
   ships List<Ship>;
@@ -110,7 +110,7 @@ struct Ship {
 }
 
 func makeGame() Game {
-  bases List<Base> = ...;
+  bases List<Base> = …;
   ships = List(
     Ship("Serenity", bases.0),
     Ship("Raza", bases.1));
@@ -118,7 +118,7 @@ func makeGame() Game {
 }
 
 exported func main() {
-  mutex = Mutex('a makeGame());
+  mutex = Mutex(a'makeGame());
 
   // Open for reading
   roLock = mutex.rlock();
@@ -168,14 +168,14 @@ Even in the above example, when we opened the mutex (using `rlock` or `rwlock`, 
 
 # Moving Objects Across Regions
 
-We can move an object to another region by putting the destination region's lifetime annotation (`'a`) in front of the data.
+We can move an object to another region by putting the destination region's lifetime annotation (`a'`) in front of the data.
 
 We call this *transmigrating*.
 
 <<<<
-Here we're transmigrating a Drawable from region `'a` to region `'b`.
+Here we're transmigrating a Drawable from region `a'` to region `b'`.
 
-Notice how we put the destination region `'b` in front of the object `baseInA`.
+Notice how we put the destination region `b'` in front of the object `baseInA`.
 
 Transmigrating has a cost though: Vale must turn the object into a regioned object first!
 
@@ -217,14 +217,14 @@ func segmentify(curve &Curve) Drawable {
   return Drawable(results);
 }
 
-func segmentifyAndSend<'a, 'b>(
-    curve 'a &Curve,
-    drawables 'b &List<Drawable>) {
+func segmentifyAndSend<a', b'>(
+    curve &a'Curve,
+    drawables &b'List<Drawable>) {
   // Assembles Drawable
   drawableInA = segmentify(curve);
 
-  // Transmigrate it to region 'b
-  drawableInB = 'b drawableInA;
+  // Transmigrate it to region b'
+  drawableInB = b'drawableInA;
 
   // Can now add it to drawables
   drawables.add(drawableInB);
@@ -253,17 +253,17 @@ There are three ways to avoid secede costs:
 <<<<
 To illustrate that last point, we can change `segmentify`.
 
-Notice how `segmentify` now accepts its parameter from a different region `'a`.
+Notice how `segmentify` now accepts its parameter from a different region `a'`.
 
 Because of this, `segmentify` gets its own region. It's making its `Vec2`s and `Drawable` in this new region.
 
-Because the return isn't `'a`, the compiler knows that `Drawable` is a regioned object.
+Because the return isn't `a'`, the compiler knows that `Drawable` is a regioned object.
 
 Now, `segmentifyAndSend` doesn't cause a secede!
 ////
 ```vale
-func segmentify<'a>(
-    curve 'a &Curve) Drawable {
+func segmentify<a'>(
+    curve &a'Curve) Drawable {
   results = List<Vec2>();
   foreach x in range(0, 10) {
     y = curve.getYForX(x);
@@ -272,15 +272,15 @@ func segmentify<'a>(
   return Drawable(results);
 }
 
-func segmentifyAndSend<'a, 'b>(
-    curve 'a &Curve,
-    drawables 'b &List<Drawable>) {
+func segmentifyAndSend<a', b'>(
+    curve &a'Curve,
+    drawables &b'List<Drawable>) {
   // Assembles Drawable
   drawableInA = segmentify(curve);
 
   // No secede, because drawableInA
   // is a regioned object.
-  drawableInB = 'b drawableInA;
+  drawableInB = b'drawableInA;
 
   // Can now add it to drawables
   drawables.add(drawableInB);

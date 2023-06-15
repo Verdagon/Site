@@ -27,7 +27,7 @@ Memory safety always has run-time costs, no matter what language we're in. [# Wi
 
 There are a lot of ways to avoid generation checks:
 
- * The compiler completely skips generation checks into immutable regions, because it knows no objects in there have been destroyed. [# See [Zero-Cost References with Regions in Vale](https://verdagon.dev/blog/zero-cost-refs-regions) for more on this.]
+ * The compiler completely skips generation checks into immutable regions, because it knows no objects in there have been destroyed. [# See [Zero-Cost Memory Safety with Vale Regions](https://verdagon.dev/blog/zero-cost-memory-safety-regions-overview) for more on this.]
  * The compiler uses a lot of static analysis to automatically skips a lot of generation checks even in non-immutable regions.
  * Hybrid-generational memory will do some checks ahead of time, and then keeps objects alive to the end of a scope so we don't have to generation check them again. [# See [Hybrid-Generational Memory](https://verdagon.dev/blog/hybrid-generational-memory) for more on this.]
  * "Unsafe" features (more on this below).

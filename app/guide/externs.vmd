@@ -307,8 +307,4 @@ Vale is the most memory-safe native language: bugs in C cannot affect Vale objec
  * When we send an immutable struct into C, it's copied, so C cannot reach the original struct's memory.
 
 
-This design also enables *deterministic replayability*, a coming feature that allows us to record an execution's inputs (from the user's keyboard, extern functions' returns, export functions' parameters) which enables us to replay it exactly.
-
-It could also record the order in which we lock mutexes and receive messages, to *unerringly replay race conditions*. Heisenbugs could be a thing of the past!
-
-
+This design also enables [perfect replayability](/blog/perfect-replayability-prototyped), a coming feature that allows us to record an execution's inputs (from the user's keyboard, extern functions' returns, export functions' parameters) which enables us to replay it exactly. [# When multi-threading comes, we hope to make it record the order in which we lock mutexes and receive messages, to *unerringly replay race conditions*. Perhaps heisenbugs will be a thing of the past!]

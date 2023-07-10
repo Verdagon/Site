@@ -19,8 +19,9 @@ Vale's medium-term goal is to prototype the more advanced performance features, 
  * *0.2.1, done Summer 2022:* Templates -> Generics
  * *0.2.2, done Early 2023:* Linear style, zero-cost programs
  * *0.3, Summer 2023:* Basic region borrow checking, Pure calls, immutable regions
- * *0.4, Late 2023:* Seamless Structured Concurrency, Fearless FFI, Perfect Replayability
- * *0.5, Summer 2024:* Incremental + parallel compilation, inline data, C++-equivalent Unsafe Mode
+ * *0.4, Late 2023:* Inline data, proper stdlib
+ * *0.4.1, Early 2024:* Seamless Structured Concurrency, Fearless FFI, Perfect Replayability
+ * *0.5, Summer 2024:* Incremental + parallel compilation
  * *0.6, Late 2024:* Isolates and Cells
  * *0.6.1, Early 2025:* Optimization, Benchmarking
 

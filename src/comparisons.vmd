@@ -9,6 +9,17 @@ namespace: c-blog m-annotated
 ---
 
 
+<ignore>
+- Compare with golang instead of javascript
+- split out into their own pages
+- stop calling us the safest. also, remove the safest native language page.
+- In comparison with rust:
+  - remove the distinction between mostly safe and safe. say that vale is about as safe as rust.
+  - talk about how we had to make a choice early on of what bugs to try to solve. two priorities: protect from damage, solve the common problems, but avoid solutions with too much complexity. we protected from UAF damage which was definitely a win, but it wasn't common enough and it had too much complexity.
+  - in rust, you can't choose simplicity and flexibility. yes, rust feels simple after you've programmed it for a while, but we're not talking about subjective complexity, we're talking about objective complexity. something is more complex when you have to balance more constraints, especially unnecessary ones like borrow checking.
+</ignore>
+
+
 Vale was created to be the first *fast*, *safe*, and *easy* programming language.
 
 <<<<

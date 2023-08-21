@@ -404,7 +404,7 @@ Babylon 5
 These are planned features for Vale. See the [roadmap](/roadmap) for plans!
 
 
-## Shortcalling Constructors
+## Shortcalling Constructors [# See [this discussion](https://github.com/ValeLang/Vale/discussions/602) for whether and how we might add shortcalling.]
 
 <<<<
 We normally call a function by name, such as the `Spaceship("Serenity", 2)` above. However, if the code is expecting a certain type, it can automatically call the constructor of the expected type.

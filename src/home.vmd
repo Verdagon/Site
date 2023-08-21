@@ -14,7 +14,7 @@ path: home
 
 Vale is:
 
- * *Fast:* Vale is AOT compiled to LLVM, statically-typed, and uses the new [generational references](/blog/generational-references) technique for memory safety with speed and flexibility, and will soon have [region borrow checking](/blog/zero-cost-memory-safety-regions-overview) to make it even faster.
+ * *Fast:* Vale is AOT compiled to LLVM, statically-typed, and uses the new [generational references](/blog/generational-references) technique for memory safety with speed and flexibility, and will soon have [region borrow checking](/blog/first-regions-prototype) to make it even faster.
  * *Safe:* It is the [safest native language](/memory-safe), thanks to [generational references](/blog/generational-references) and [Fearless FFI](https://verdagon.dev/blog/fearless-ffi).
  * *Easy:* Vale has memory-safe single ownership without garbage collection or a borrow checker, which makes it easy to write safe, fast code.
 
@@ -101,6 +101,8 @@ Our goal is to make Vale the best language for high-performance low-overhead use
 
 *Recent posts:*
 
+ * [Vale's First Prototype for Immutable Region Borrowing](/blog/first-regions-prototype)
+ * [Generational References (Updated)](/blog/generational-references)
  * [Making C++ Memory-Safe Without Borrow Checking, RC, or Tracing GC](/blog/vale-memory-safe-cpp)
  * [Chasing the Myth of Zero-Overhead Memory Safety](https://verdagon.dev/blog/myth-zero-overhead-memory-safety)
  * [Single Ownership and Memory Safety without Borrow Checking, RC, or GC](/blog/single-ownership-without-borrow-checking-rc-gc)
@@ -113,6 +115,16 @@ Our goal is to make Vale the best language for high-performance low-overhead use
  * [Zero-Cost Memory Safety with Vale Regions (Preview)](/blog/zero-cost-memory-safety-regions-overview)
  * [Hash Codes, Non-Determinism, and Other Eldritch Horrors](/blog/generics-hash-codes-horrors)
  * [Perfect Replayability](/blog/perfect-replayability-prototyped)
+
+Follow along via our [RSS feed](/rss.xml), [twitter](https://twitter.com/vale_pl), or the [r/Vale](https://reddit.com/r/vale) subreddit!
+
+
+
+>>>>
+
+
+
+<ignore>
  * [Vale's Fearless FFI, for Safer Dependencies and Supply-Chain Attack Mitigation](/blog/fearless-ffi)
  * [Vale 0.2 Released](/blog/version-0.2-released)
  * [Added to Vale 0.2 Beta: Concept Functions](/blog/concept-functions)
@@ -128,19 +140,15 @@ Our goal is to make Vale the best language for high-performance low-overhead use
  * [Zero Cost References with Regions](/blog/zero-cost-refs-regions)
  * [Next Steps for Single Ownership and RAII](/blog/raii-next-steps)
  * [Announcing Vale!](https://www.reddit.com/r/ProgrammingLanguages/comments/hplj2i/vale/)
-
-Follow along via our [RSS feed](/rss.xml), [twitter](https://twitter.com/vale_pl), or the [r/Vale](https://reddit.com/r/vale) subreddit!
-
-
-
-
->>>>
+</ignore>
 
 
 <<<<
 
 *What's been happening recently:*
 
+ * *July 11: 2023:* More regions stages merged (Instantiator, Simplifer), only one left!
+ * *July 2: 2023:* More regions stages merged (Lexer, Parser, PostParser, HigherTyping).
  * *June 9: 2023:* Regions backend portion merged!
  * *May 1: 2023:* Regions prototyped!
  * *Mar 18: 2023:* First program with zero-cost region borrowing done!

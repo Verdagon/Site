@@ -273,6 +273,8 @@ The *Thoughts on an Automatic Rust* series will talk about Rust's innovations, a
 
 What's been happening recently:
 
+ * *July 11: 2023:* More regions stages merged (Instantiator, Simplifer), only one left!
+ * *July 2: 2023:* More regions stages merged (Lexer, Parser, PostParser, HigherTyping).
  * *June 9: 2023:* Regions backend portion merged!
  * *May 1: 2023:* Regions prototyped!
  * *Mar 18: 2023:* First program with zero-cost region borrowing done!

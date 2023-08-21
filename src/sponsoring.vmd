@@ -38,7 +38,7 @@ With enough sponsorship, we can:
  * Make Vale into a production-ready language, and push it into the mainstream!
 
 
-We have a strong [track record](https://vale.dev/roadmap), and during this quest we've discovered and implemented a lot of completely new techniques:
+We have a strong [track record](https://vale.dev/roadmap#recent-additions), and during this quest we've discovered and implemented a lot of completely new techniques:
 
  * The [Linear-Aliasing Model](/blog/linear-types-borrowing) that lets us use linear types where we need speed, and [generational references](/blog/generational-references) where we need the flexibility of shared mutability.
  * [Region Borrowing](/blog/first-regions-prototype), which makes it easier to write efficient code by composing shared mutability with the ability to temporarily freeze data.

@@ -109,6 +109,7 @@ We talked about three mechanisms:
 With these measures in place, Vale will be the first completely memory safe native language!
 
 
+<ignore>
 If you're impressed with our [track record so far](https://vale.dev/roadmap) and believe in the direction we're heading, please consider [sponsoring us](https://github.com/sponsors/ValeLang):
 
 <center>
@@ -121,8 +122,4 @@ If you're impressed with our [track record so far](https://vale.dev/roadmap) and
 </center>
 
 With your help, we can bring complete memory safety to programmers everywhere!
-
-
-
-
-<$include "/sponsoring.vmd"/>
+</ignore>

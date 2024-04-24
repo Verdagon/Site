@@ -114,12 +114,12 @@ If you're curious, these headers will be generated in the <output_dir>/include/<
 
 The simplest way is to provide it as a standalone file for the module on the command line, such as the `mymodule=src/myccode.c` here:
 
-`valec build mymodule=src/main.vale mymodule=src/myccode.c --output_dir=build`
+`valec build mymodule=src/main.vale mymodule=src/myccode.c --output_dir build`
 
 
 A better option is to put it in your module's `native` subdirectory. valec automatically compiles any `.c` code it finds in a `native/` subdirectory under your module.
 
-For example, if we said `valec build mymodule=src/main.vale --output_dir=build` and we had a file `src/native/myccode.c`, valec would compile it in automatically.
+For example, if we said `valec build mymodule=src/main.vale --output_dir build` and we had a file `src/native/myccode.c`, valec would compile it in automatically.
 
 
 <slice />

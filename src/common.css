@@ -17,6 +17,7 @@ b {
 }
 
 .donate-link {
+  opacity: .9;
 }
 
 .metadata .separator {
@@ -24,6 +25,7 @@ b {
 }
 
 .author {
+  opacity: .6;
 }
 .date {
 }

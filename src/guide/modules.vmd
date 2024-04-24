@@ -21,7 +21,7 @@ series-entry: [Unsafe](/guide/unsafe)
 
 When we run:
 
-`valec build mymodule=~/myprogram.vale --output_dir=build`
+`valec build mymodule=~/myprogram.vale --output_dir build`
 
 the `mymodule=~/myprogram.vale` is adding `~/myprogram.vale` to a new module named `mymodule`. A module is a grouping of source code. [# This is like Java projects or C++ translation units.] We can also:
 

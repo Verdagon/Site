@@ -32,9 +32,9 @@ We often call `main`'s region the *main region*.
 <<<<
 A common pattern is for a function to regard all of its parameters as coming from a read-only region.
 
-Notice the `<a' ro>`. The `'` means region, followed by its name (`a`), followed by its permission (`ro` which means read-only).
+Notice the `<a' ro>`. `a'` means `a` is a region, followed by its permission (`ro` which means read-only).
 
-When main passes in `allShips` from the main region into the `'a &List<Ship>` parameter, `biggestShipName`:
+When main passes in `allShips` from the main region into the `&a'List<Ship>` parameter, `biggestShipName`:
 
  * Refers to the main region by the name `'a`.
  * Can't modify anything in that region, because of the `ro` permission.
@@ -88,7 +88,7 @@ We can make a mutexed region with the `Mutex` function.
 
 It accepts a *regioned object*. A regioned object is an object where all of its (directly or indirectly) owned objects refer only to each other and are referred to only by each other.
 
-Here, we're making a regioned object with a region call, the `'a makeGame()`.
+Here, we're making a regioned object with a region call, the `a' makeGame()`.
 
 `Mutex` will take the regioned object, and wrap it in a `Mutex` object.
 
@@ -98,7 +98,7 @@ There's a corresponding `rwlock` method for `read-write` access.
 
 The compiler keeps track of all references' regions, and makes sure that no references outlive their lock.
 ////
-```
+```vale
 struct Game {
   bases List<Base>;
   ships List<Ship>;
@@ -118,7 +118,7 @@ func makeGame() Game {
 }
 
 exported func main() {
-  mutex = Mutex(a'makeGame());
+  mutex = Mutex(a' makeGame());
 
   // Open for reading
   roLock = mutex.rlock();
@@ -224,7 +224,7 @@ func segmentifyAndSend<a', b'>(
   drawableInA = segmentify(curve);
 
   // Transmigrate it to region b'
-  drawableInB = b'drawableInA;
+  drawableInB = b' drawableInA;
 
   // Can now add it to drawables
   drawables.add(drawableInB);
@@ -280,7 +280,7 @@ func segmentifyAndSend<a', b'>(
 
   // No secede, because drawableInA
   // is a regioned object.
-  drawableInB = b'drawableInA;
+  drawableInB = b' drawableInA;
 
   // Can now add it to drawables
   drawables.add(drawableInB);

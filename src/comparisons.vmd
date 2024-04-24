@@ -197,6 +197,7 @@ Vale's combination of speed, safety, and ease are universally useful, but it wil
 We hope you enjoyed this article, and as always, feel free to [tweet us](https://twitter.com/vale_pl), leave any comments in the [r/vale](http://reddit.com/r/vale) subreddit, or swing by our [discord server](https://discord.gg/SNB8yGH)!
 
 
+<ignore>
 If you're as excited about Vale as we are, please consider sponsoring us!
 
 
@@ -208,10 +209,4 @@ If you're as excited about Vale as we are, please consider sponsoring us!
      Sponsor us on GitHub!
   </a>
 </center>
-
-
-
-
-
-
-<$include "/sponsoring.vmd"/>
+</ignore>

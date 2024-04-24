@@ -46,7 +46,7 @@ exported func main() {
   // Call findPath, make it
   // use a pool.
   path =
-    'pool findPath(
+    pool'findPath(
       &game,
       Location(1, 2),
       Location(8, 9));
@@ -54,10 +54,10 @@ exported func main() {
 }
 
 func findPath<'b, 'r>( «annotations»
-  game 'r &Game,
-  from 'r Location,
-  to 'r Location)
-List<Location> 'b {
+  game &r'Game,
+  from r'Location,
+  to r'Location)
+List<Location> b' {
   explored = Set<Location>();
   // ...
 }
@@ -95,10 +95,10 @@ Here, we're adding `pure` to `findPath`, which causes two things to happen:
 ////
 ```vale
 pure func findPath<'b, 'r>(
-  game 'r &Game,
-  from 'r Location,
-  to 'r Location)
-List<Location> 'b {
+  game &r'Game,
+  from r'Location,
+  to r'Location)
+List<Location> b' {
   explored = Set<Location>();
   // ...
 }

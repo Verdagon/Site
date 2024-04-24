@@ -88,6 +88,7 @@ Hello Mars!
 Our goal is to make Vale the best language for high-performance low-overhead use cases, such as servers, games, simulations, and systems programming.
 
 
+<ignore>
 <center>
   <a href="https://github.com/sponsors/ValeLang" class="donate-button">
     <svg aria-hidden="true" height="16" viewBox="0 0 16 16" version="1.1" width="16" data-view-component="true" class="octicon octicon-heart icon-sponsor mr-1 color-fg-sponsors">
@@ -96,11 +97,12 @@ Our goal is to make Vale the best language for high-performance low-overhead use
     Sponsor us on GitHub!
   </a>
 </center>
-
+</ignore>
 
 
 *Recent posts:*
 
+ * [Borrow checking, RC, GC, and the Eleven (!) Other Memory Safety Approaches](https://verdagon.dev/grimoire/grimoire)
  * [Vale's First Prototype for Immutable Region Borrowing](/blog/first-regions-prototype)
  * [Generational References (Updated)](/blog/generational-references)
  * [Making C++ Memory-Safe Without Borrow Checking, RC, or Tracing GC](/blog/vale-memory-safe-cpp)
@@ -177,7 +179,7 @@ Follow along via our [RSS feed](/rss.xml), [twitter](https://twitter.com/vale_pl
 Vale is [open for contributions](/contribute), thank you to our team of [contributors](/contributors)!
 
 
-
+<ignore>
 <center>
   <a href="https://github.com/sponsors/ValeLang" class="donate-button">
     <svg aria-hidden="true" height="16" viewBox="0 0 16 16" version="1.1" width="16" data-view-component="true" class="octicon octicon-heart icon-sponsor mr-1 color-fg-sponsors">
@@ -186,9 +188,10 @@ Vale is [open for contributions](/contribute), thank you to our team of [contrib
     Sponsor us on GitHub!
   </a>
 </center>
+</ignore>
 
 
-*Thank you to our [Gold and Platinum tier](https://github.com/sponsors/ValeLang) sponsors!* Your support makes all this possible.
+*Thank you to our sponsors!* Your support is making all this possible.
 
  * [Arthur Weagel](https://github.com/aweagel)
  * [Kiril Mihaylov](https://github.com/KirilMihaylov)

@@ -151,5 +151,6 @@ The Linear-Aliasing Model is one of many techniques that Vale is bringing into t
  * [Fearless FFI](/blog/fearless-ffi) that lets us more safely interface with C and other native languages.
 
 
+<ignore>
 If you believe in the direction Vale is heading, please consider [sponsoring us on GitHub](https://github.com/sponsors/ValeLang)! And if you have any questions, feel free to [make an issue](https://github.com/ValeLang/Vale/issues) or ask on the [discord server](https://discord.gg/SNB8yGH) or [subreddit](https://reddit.com/r/vale).
-
+</ignore>

@@ -32,7 +32,7 @@ First, download the latest Vale compiler from the [downloads page](/download), a
 Then:
 
  * Put the below code into a .vale file such as `~/myprogram.vale`
- * Run the command `~/Vale/valec build mymodule=~/myprogram.vale --output_dir=build`.
+ * Run the command `~/Vale/valec build mymodule=~/myprogram.vale --output_dir build`.
     * See that it created a `build` directory, with a `main` executable in it. [# If on windows, the executable will be named `main.exe`.]
  * Run the command `build/main` to run the executable.
 
@@ -57,13 +57,16 @@ Every source file must belong to a module. That's what the `mymodule=` is for. F
 
 Instead of:
 
-`~/Vale/valec build mymodule=~/myprogram.vale --output_dir=build`
+`~/Vale/valec build mymodule=~/myprogram.vale --output_dir build`
 
 You can say:
 
-`valec build mymodule=~/myprogram.vale --output_dir=build`
+`valec build mymodule=~/myprogram.vale --output_dir build`
 
 if you put ~/Vale in your PATH. [#path] We recommend it!
+
+
+! If you get an error "Unable to find program java" then you'll need to install a JDK, we recommend [AdoptOpenJDK](https://adoptopenjdk.net/releases.html).
 
 
 # Variables
